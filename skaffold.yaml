@@ -26,6 +26,8 @@ build:
     context: src/productcatalogservice
   - image: recommendationservice
     context: src/recommendationservice
+  - image: reviewservice
+    context: src/reviewservice
   - image: shippingservice
     context: src/shippingservice
   - image: checkoutservice
