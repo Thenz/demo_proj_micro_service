@@ -63,6 +63,10 @@
   </div>
   <div class="container py-3 px-lg-5 py-lg-5">
     {{ if $.recommendations}}
+      {{ template "reviews" $.recommendations }}
+    {{ end }}
+
+    {{ if $.recommendations}}
       {{ template "recommendations" $.recommendations }}
     {{ end }}
 
