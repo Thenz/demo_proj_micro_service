@@ -375,6 +375,92 @@ func (m *ListRecommendationsResponse) GetProductIds() []string {
 	return nil
 }
 
+type ListReviewsRequest struct {
+	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProductIds           []string `protobuf:"bytes,2,rep,name=product_ids,json=productIds,proto3" json:"product_ids,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ListReviewsRequest) Reset()         { *m = ListReviewsRequest{} }
+func (m *ListReviewsRequest) String() string { return proto.CompactTextString(m) }
+func (*ListReviewsRequest) ProtoMessage()    {}
+func (*ListReviewsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ca53982754088a9d, []int{6}
+}
+
+func (m *ListReviewsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListReviewsRequest.Unmarshal(m, b)
+}
+func (m *ListReviewsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListReviewsRequest.Marshal(b, m, deterministic)
+}
+func (m *ListReviewsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListReviewsRequest.Merge(m, src)
+}
+func (m *ListReviewsRequest) XXX_Size() int {
+	return xxx_messageInfo_ListReviewsRequest.Size(m)
+}
+func (m *ListReviewsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListReviewsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListReviewsRequest proto.InternalMessageInfo
+
+func (m *ListReviewsRequest) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *ListReviewsRequest) GetProductIds() []string {
+	if m != nil {
+		return m.ProductIds
+	}
+	return nil
+}
+
+type ListReviewsResponse struct {
+	ProductIds           []string `protobuf:"bytes,1,rep,name=product_ids,json=productIds,proto3" json:"product_ids,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ListReviewsResponse) Reset()         { *m = ListReviewsResponse{} }
+func (m *ListReviewsResponse) String() string { return proto.CompactTextString(m) }
+func (*ListReviewsResponse) ProtoMessage()    {}
+func (*ListReviewsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ca53982754088a9d, []int{7}
+}
+
+func (m *ListReviewsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListReviewsResponse.Unmarshal(m, b)
+}
+func (m *ListReviewsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListReviewsResponse.Marshal(b, m, deterministic)
+}
+func (m *ListReviewsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListReviewsResponse.Merge(m, src)
+}
+func (m *ListReviewsResponse) XXX_Size() int {
+	return xxx_messageInfo_ListReviewsResponse.Size(m)
+}
+func (m *ListReviewsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListReviewsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListReviewsResponse proto.InternalMessageInfo
+
+func (m *ListReviewsResponse) GetProductIds() []string {
+	if m != nil {
+		return m.ProductIds
+	}
+	return nil
+}
+
 type Product struct {
 	Id          string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name        string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -1569,6 +1655,8 @@ func init() {
 	proto.RegisterType((*Empty)(nil), "hipstershop.Empty")
 	proto.RegisterType((*ListRecommendationsRequest)(nil), "hipstershop.ListRecommendationsRequest")
 	proto.RegisterType((*ListRecommendationsResponse)(nil), "hipstershop.ListRecommendationsResponse")
+  proto.RegisterType((*ListReviewsRequest)(nil), "hipstershop.ListReviewsRequest")
+	proto.RegisterType((*ListReviewsResponse)(nil), "hipstershop.ListReviewsResponse")
 	proto.RegisterType((*Product)(nil), "hipstershop.Product")
 	proto.RegisterType((*ListProductsResponse)(nil), "hipstershop.ListProductsResponse")
 	proto.RegisterType((*GetProductRequest)(nil), "hipstershop.GetProductRequest")
@@ -1791,6 +1879,71 @@ var _RecommendationService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListRecommendations",
 			Handler:    _RecommendationService_ListRecommendations_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "demo.proto",
+}
+
+
+// ReviewServiceClient is the client API for ReviewService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type ReviewServiceClient interface {
+	ListReviews(ctx context.Context, in *ListReviewsRequest, opts ...grpc.CallOption) (*ListReviewsResponse, error)
+}
+
+type reviewServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewReviewServiceClient(cc *grpc.ClientConn) ReviewServiceClient {
+	return &reviewServiceClient{cc}
+}
+
+func (c *reviewServiceClient) ListReviews(ctx context.Context, in *ListReviewsRequest, opts ...grpc.CallOption) (*ListReviewsResponse, error) {
+	out := new(ListReviewsResponse)
+	err := c.cc.Invoke(ctx, "/hipstershop.ReviewService/ListReviews", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ReviewServiceServer is the server API for ReviewService service.
+type ReviewServiceServer interface {
+	ListReviews(context.Context, *ListReviewsRequest) (*ListReviewsResponse, error)
+}
+
+func RegisterReviewServiceServer(s *grpc.Server, srv ReviewServiceServer) {
+	s.RegisterService(&_ReviewService_serviceDesc, srv)
+}
+
+func _ReviewService_ListReviews_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListReviewsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ReviewServiceServer).ListReviews(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hipstershop.ReviewService/ListReviews",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ReviewServiceServer).ListReviews(ctx, req.(*ListReviewsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _ReviewService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "hipstershop.ReviewService",
+	HandlerType: (*ReviewServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListReviews",
+			Handler:    _ReviewService_ListReviews_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
