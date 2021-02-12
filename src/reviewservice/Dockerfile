@@ -36,4 +36,4 @@ COPY . .
 ENV PORT "8080"
 EXPOSE 8080
 
-ENTRYPOINT ["python", "/reviewservice/recommendation_server.py"]
+ENTRYPOINT ["python", "/reviewservice/review_server.py"]
