@@ -36,7 +36,7 @@ from grpc_health.v1 import health_pb2
 from grpc_health.v1 import health_pb2_grpc
 
 from logger import getJSONLogger
-logger = getJSONLogger('recommendationservice-server')
+logger = getJSONLogger('reviewservice-server')
 
 def initStackdriverProfiling():
   project_id = None
@@ -49,9 +49,9 @@ def initStackdriverProfiling():
   for retry in range(1,4):
     try:
       if project_id:
-        googlecloudprofiler.start(service='recommendation_server', service_version='1.0.0', verbose=0, project_id=project_id)
+        googlecloudprofiler.start(service='review_server', service_version='1.0.0', verbose=0, project_id=project_id)
       else:
-        googlecloudprofiler.start(service='recommendation_server', service_version='1.0.0', verbose=0)
+        googlecloudprofiler.start(service='review_server', service_version='1.0.0', verbose=0)
       logger.info("Successfully started Stackdriver Profiler.")
       return
     except (BaseException) as exc:
@@ -63,8 +63,8 @@ def initStackdriverProfiling():
         logger.warning("Could not initialize Stackdriver Profiler after retrying, giving up")
   return
 
-class RecommendationService(demo_pb2_grpc.RecommendationServiceServicer):
-    def ListRecommendations(self, request, context):
+class ReviewService(demo_pb2_grpc.ReviewServiceServicer):
+    def ListReviews(self, request, context):
         max_responses = 5
         # fetch list of products from product catalog stub
         cat_response = product_catalog_stub.ListProducts(demo_pb2.Empty())
@@ -76,9 +76,9 @@ class RecommendationService(demo_pb2_grpc.RecommendationServiceServicer):
         indices = random.sample(range(num_products), num_return)
         # fetch product ids from indices
         prod_list = [filtered_products[i] for i in indices]
-        logger.info("[Recv ListRecommendations] product_ids={}".format(prod_list))
+        logger.info("[Recv ListReviews] product_ids={}".format(prod_list))
         # build and return response
-        response = demo_pb2.ListRecommendationsResponse()
+        response = demo_pb2.ListReviewsResponse()
         response.product_ids.extend(prod_list)
         return response
 
@@ -92,7 +92,7 @@ class RecommendationService(demo_pb2_grpc.RecommendationServiceServicer):
 
 
 if __name__ == "__main__":
-    logger.info("initializing recommendationservice")
+    logger.info("initializing reviewservice")
 
     try:
       if "DISABLE_PROFILER" in os.environ:
@@ -125,7 +125,7 @@ if __name__ == "__main__":
         logger.info("Debugger enabled.")
         try:
           googleclouddebugger.enable(
-              module='recommendationserver',
+              module='reviewserver',
               version='1.0.0'
           )
         except (Exception, DefaultCredentialsError):
@@ -148,8 +148,8 @@ if __name__ == "__main__":
                       interceptors=(tracer_interceptor,))
 
     # add class to gRPC server
-    service = RecommendationService()
-    demo_pb2_grpc.add_RecommendationServiceServicer_to_server(service, server)
+    service = ReviewService()
+    demo_pb2_grpc.add_ReviewServiceServicer_to_server(service, server)
     health_pb2_grpc.add_HealthServicer_to_server(service, server)
 
     # start server

@@ -156,6 +156,12 @@ func (fe *frontendServer) productHandler(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
+	reviews, err := fe.getReviews(r.Context(), sessionID(r), []string{id})
+	if err != nil {
+		renderHTTPError(log, r, w, errors.Wrap(err, "failed to get product reviews"), http.StatusInternalServerError)
+		return
+	}
+
 	product := struct {
 		Item  *pb.Product
 		Price *pb.Money
@@ -170,6 +176,7 @@ func (fe *frontendServer) productHandler(w http.ResponseWriter, r *http.Request)
 		"currencies":      currencies,
 		"product":         product,
 		"recommendations": recommendations,
+		"reviews":         reviews,
 		"cart_size":       cartSize(cart),
 		"platform_css":    plat.css,
 		"platform_name":   plat.provider,
@@ -234,6 +241,12 @@ func (fe *frontendServer) viewCartHandler(w http.ResponseWriter, r *http.Request
 		return
 	}
 
+  reviews, err := fe.getReviews(r.Context(), sessionID(r), cartIDs(cart))
+  if err != nil {
+    renderHTTPError(log, r, w, errors.Wrap(err, "failed to get product reviews"), http.StatusInternalServerError)
+    return
+  }
+
 	shippingCost, err := fe.getShippingQuote(r.Context(), cart, currentCurrency(r))
 	if err != nil {
 		renderHTTPError(log, r, w, errors.Wrap(err, "failed to get shipping quote"), http.StatusInternalServerError)
@@ -275,6 +288,7 @@ func (fe *frontendServer) viewCartHandler(w http.ResponseWriter, r *http.Request
 		"user_currency":    currentCurrency(r),
 		"currencies":       currencies,
 		"recommendations":  recommendations,
+    "reviews":          reviews,
 		"cart_size":        cartSize(cart),
 		"shipping_cost":    shippingCost,
 		"show_currency":    true,
@@ -331,6 +345,10 @@ func (fe *frontendServer) placeOrderHandler(w http.ResponseWriter, r *http.Reque
 	order.GetOrder().GetItems()
 	recommendations, _ := fe.getRecommendations(r.Context(), sessionID(r), nil)
 
+  order.GetOrder().GetItems()
+  reviews, _ := fe.getReviews(r.Context(), sessionID(r), nil)
+
+
 	totalPaid := *order.GetOrder().GetShippingCost()
 	for _, v := range order.GetOrder().GetItems() {
 		multPrice := money.MultiplySlow(*v.GetCost(), uint32(v.GetItem().GetQuantity()))
@@ -352,6 +370,7 @@ func (fe *frontendServer) placeOrderHandler(w http.ResponseWriter, r *http.Reque
 		"order":           order.GetOrder(),
 		"total_paid":      &totalPaid,
 		"recommendations": recommendations,
+		"reviews":         reviews,
 		"platform_css":    plat.css,
 		"platform_name":   plat.provider,
 	}); err != nil {
