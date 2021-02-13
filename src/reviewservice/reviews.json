@@ -1,0 +1,67 @@
+{
+    "products": [
+        {
+            "id": "OLJCESPC7Z",
+            "name": "Vintage Typewriter",
+            "user": "Max",
+            "stars": "4",
+            "review": "This typewriter looks good in your living room."
+        },
+        {
+            "id": "66VCHSJNUP",
+            "name": "Vintage Camera Lens",
+            "user": "Max",
+            "stars": "5",
+            "review": "You won't have a camera to use it and it probably doesn't work anyway."
+        },
+        {
+            "id": "1YMWWN1N4O",
+            "name": "Home Barista Kit",
+            "user": "Max",
+            "stars": "4",
+            "review": "Always wanted to brew coffee with Chemex and Aeropress at home?"
+        },
+        {
+            "id": "L9ECAV7KIM",
+            "name": "Terrarium",
+            "user": "Max",
+            "stars": "4",
+            "review": "This terrarium will looks great in your white painted living room."
+        },
+        {
+            "id": "2ZYFJ3GM2N",
+            "name": "Film Camera",
+            "user": "Max",
+            "stars": "4",
+            "review": "This camera looks like it's a film camera, but it's actually digital."
+        },
+        {
+            "id": "0PUK6V6EV0",
+            "name": "Vintage Record Player",
+            "user": "Max",
+            "stars": "4",
+            "review": "It still works."
+        },
+        {
+            "id": "LS4PSXUNUM",
+            "name": "Metal Camping Mug",
+            "user": "Max",
+            "stars": "4",
+            "review": "You probably don't go camping that often but this is better than plastic cups."
+        },
+        {
+            "id": "9SIQT8TOJO",
+            "name": "City Bike",
+            "user": "Max",
+            "stars": "4",
+            "review": "This single gear bike probably cannot climb the hills of San Francisco."
+        },
+        {
+            "id": "6E92ZMYYFZ",
+            "name": "Air Plant",
+            "user": "Max",
+            "stars": "4",
+            "review": "Have you ever wondered whether air plants need water? Buy one and figure out."
+        }
+    ]
+}
