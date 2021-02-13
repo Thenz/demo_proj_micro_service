@@ -79,6 +79,14 @@ message ListReviewsResponse {
     repeated string product_ids = 1;
 }
 
+message Review {
+    string id = 1;
+    string name = 2;
+    string user = 3;
+    string stars = 4;
+    string review = 5;
+}
+
 // ---------------Product Catalog----------------
 
 service ProductCatalogService {
