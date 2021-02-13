@@ -64,12 +64,14 @@ def initStackdriverProfiling():
   return
 
 class ReviewService(demo_pb2_grpc.ReviewServiceServicer):
+    # TODO: match id with all reviews in reviews.json return list of reviews
     def ListReviews(self, request, context):
         max_responses = 5
         # fetch list of products from product catalog stub
         cat_response = product_catalog_stub.ListProducts(demo_pb2.Empty())
         product_ids = [x.id for x in cat_response.products]
-        filtered_products = list(set(product_ids)-set(request.product_ids))
+        #filtered_products = list(set(product_ids)-set(request.product_ids))
+        filtered_products = list(set(request.product_ids))
         num_products = len(filtered_products)
         num_return = min(max_responses, num_products)
         # sample list of indicies to return
@@ -81,6 +83,7 @@ class ReviewService(demo_pb2_grpc.ReviewServiceServicer):
         response = demo_pb2.ListReviewsResponse()
         response.product_ids.extend(prod_list)
         return response
+    # END TODO
 
     def Check(self, request, context):
         return health_pb2.HealthCheckResponse(
