@@ -14,6 +14,8 @@
 
 syntax = "proto3";
 
+option go_package = "google.golang.org/protobuf/types/known/";
+
 package hipstershop;
 
 // -----------------Cart service-----------------
@@ -81,7 +83,7 @@ message ListReviewsRequest {
 }
 
 message ListReviewsResponse {
-    repeated string reviews = 1;
+    repeated Review reviews = 1;
 }
 
 message Review {
