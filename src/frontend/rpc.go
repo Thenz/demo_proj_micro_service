@@ -116,14 +116,16 @@ func (fe *frontendServer) getRecommendations(ctx context.Context, userID string,
 	return out, err
 }
 
-// func (fe *frontendServer) getReviews(ctx context.Context, userID string, productIDs []string) ([]*pb.Review, error) {
-func (fe *frontendServer) getReviews(ctx context.Context, userID string, productID []string) ([]string, error) {
+func (fe *frontendServer) getReviews(ctx context.Context, userID string, productID []string) ([]*pb.Review, error) {
 	resp, err := pb.NewReviewServiceClient(fe.reviewSvcConn).ListReviews(ctx,
 		&pb.ListReviewsRequest{UserId: userID, ProductId: productID})
 	if err != nil {
 		return nil, err
 	}
-  out := resp.GetReviews()
+	out := make([]*pb.Review, len(resp.GetReviews()))
+	for i, v := range resp.GetReviews() {
+		out[i] = v
+	}
 	return out, err
 }
 
