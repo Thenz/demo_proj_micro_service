@@ -68,15 +68,20 @@ message ListRecommendationsResponse {
 
 service ReviewService {
   rpc ListReviews(ListReviewsRequest) returns (ListReviewsResponse){}
+  rpc GetReview(GetReviewRequest) returns (Review) {}
+}
+
+message GetReviewRequest {
+    string id = 1;
 }
 
 message ListReviewsRequest {
     string user_id = 1;
-    repeated string product_ids = 2;
+    repeated string product_id = 2;
 }
 
 message ListReviewsResponse {
-    repeated string product_ids = 1;
+    repeated string reviews = 1;
 }
 
 message Review {
