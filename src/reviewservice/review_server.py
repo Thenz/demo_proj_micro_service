@@ -75,10 +75,16 @@ class ReviewService(demo_pb2_grpc.ReviewServiceServicer):
         # log product id
         logger.info("[Recv ListReviews] product_ids={}".format(product_id))
 
-        # build and return response
-        response = demo_pb2.ListReviewsResponse()
-        # TODO: send all review information
-        response.reviews.extend(product_id)
+        # build response
+        response = demo_pb2.Review()
+        response.id = "OLJCESPC7Z"
+        response.name = "Vintage Typewriter"
+        response.user = "Max"
+        response.stars = "4"
+        response.review = "This typewriter looks good in your living room."
+
+        # log review response
+        logger.info("[Review review] response={}".format(response))
 
         return response
 
