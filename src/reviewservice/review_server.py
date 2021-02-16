@@ -64,26 +64,42 @@ def initStackdriverProfiling():
   return
 
 class ReviewService(demo_pb2_grpc.ReviewServiceServicer):
-    # TODO: match id with all reviews in reviews.json return list of reviews
     def ListReviews(self, request, context):
-        max_responses = 5
-        # fetch list of products from product catalog stub
-        cat_response = product_catalog_stub.ListProducts(demo_pb2.Empty())
-        product_ids = [x.id for x in cat_response.products]
-        #filtered_products = list(set(product_ids)-set(request.product_ids))
-        filtered_products = list(set(request.product_ids))
-        num_products = len(filtered_products)
-        num_return = min(max_responses, num_products)
-        # sample list of indicies to return
-        indices = random.sample(range(num_products), num_return)
-        # fetch product ids from indices
-        prod_list = [filtered_products[i] for i in indices]
-        logger.info("[Recv ListReviews] product_ids={}".format(prod_list))
-        # build and return response
+
+        # id of viewed product
+        product_id = list(set(request.product_id))
+
+        # log product id
+        logger.info("[ListReviews product_id] product_id={}".format(product_id))
+
+        # prepare response
         response = demo_pb2.ListReviewsResponse()
-        response.product_ids.extend(prod_list)
+
+        # TODO: match id with all reviews in reviews.json return list of reviews
+
+        # build response (example 1)
+        rev = response.reviews.add()
+
+        rev.id = "OLJCESPC7Z"
+        rev.name = "Highly recommended!"
+        rev.user = "Max"
+        rev.stars = "4"
+        rev.text = "This product is the best."
+
+        rev1 = response.reviews.add()
+
+        # build response (example 2)
+        rev1.id = "OLJCESPC7Z"
+        rev1.name = "I can't stop using it..."
+        rev1.user = "Alice"
+        rev1.stars = "4"
+        rev1.text = "It's just what you need."
+
+        # log review response
+        logger.info("[ListReviews response] response={}".format(response))
+
         return response
-    # END TODO
+
 
     def Check(self, request, context):
         return health_pb2.HealthCheckResponse(

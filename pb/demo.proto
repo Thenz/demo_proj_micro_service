@@ -72,11 +72,11 @@ service ReviewService {
 
 message ListReviewsRequest {
     string user_id = 1;
-    repeated string product_ids = 2;
+    repeated string product_id = 2;
 }
 
 message ListReviewsResponse {
-    repeated string product_ids = 1;
+    repeated Review reviews = 1;
 }
 
 message Review {
@@ -84,7 +84,7 @@ message Review {
     string name = 2;
     string user = 3;
     string stars = 4;
-    string review = 5;
+    string text = 5;
 }
 
 // ---------------Product Catalog----------------
