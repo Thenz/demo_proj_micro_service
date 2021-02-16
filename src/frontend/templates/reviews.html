@@ -17,17 +17,11 @@
 {{ define "reviews" }}
 <section class="reviews newsection">
     <div class="container">
-      <div class="image">
-        <img src="/static/icons/Hipster_OtherProducts.svg" alt="Other products you might like" />
-      </div>
+      <h2>Reviews</h2>
       <div class="row prods">
           {{range . }}
           <div class="col-md-3">
             <div class="h-card card mb-3 box-shadow">
-              <a href="/product/{{.Id}}">
-                <img alt="" style="width: 100%; height: auto;" src="{{.Picture}}">
-                <div class="card-hover"></div>
-              </a>
               <div class="card-body text-center py-2">
                 <h5 class="card-title h-card-title">
                   {{ .Name }}

@@ -76,17 +76,21 @@ class ReviewService(demo_pb2_grpc.ReviewServiceServicer):
         logger.info("[Recv ListReviews] product_ids={}".format(product_id))
 
         # build response
-        response = demo_pb2.Review()
-        response.id = "OLJCESPC7Z"
-        response.name = "Vintage Typewriter"
-        response.user = "Max"
-        response.stars = "4"
-        response.review = "This typewriter looks good in your living room."
+        rev = demo_pb2.Review()
+        rev.id = "OLJCESPC7Z"
+        rev.name = "Vintage Typewriter"
+        rev.user = "Max"
+        rev.stars = "4"
+        rev.text = "This typewriter looks good in your living room."
+
+        # review_list = ["OLJCESPC7Z", "Vintage Typewriter", "Max", "4", "This typewriter looks good in your living room."]
+        # response = demo_pb2.ListReviewsResponse()
+        # response.extends(rev)
 
         # log review response
-        logger.info("[Review review] response={}".format(response))
+        #logger.info("[Review review] response={}".format(response))
 
-        return response
+        return rev
 
 
     def Check(self, request, context):

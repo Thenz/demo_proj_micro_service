@@ -219,11 +219,6 @@ class ReviewServiceStub(object):
         self.ListReviews = channel.unary_unary(
                 '/hipstershop.ReviewService/ListReviews',
                 request_serializer=demo__pb2.ListReviewsRequest.SerializeToString,
-                response_deserializer=demo__pb2.ListReviewsResponse.FromString,
-                )
-        self.GetReview = channel.unary_unary(
-                '/hipstershop.ReviewService/GetReview',
-                request_serializer=demo__pb2.GetReviewRequest.SerializeToString,
                 response_deserializer=demo__pb2.Review.FromString,
                 )
 
@@ -239,23 +234,12 @@ class ReviewServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetReview(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_ReviewServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ListReviews': grpc.unary_unary_rpc_method_handler(
                     servicer.ListReviews,
                     request_deserializer=demo__pb2.ListReviewsRequest.FromString,
-                    response_serializer=demo__pb2.ListReviewsResponse.SerializeToString,
-            ),
-            'GetReview': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetReview,
-                    request_deserializer=demo__pb2.GetReviewRequest.FromString,
                     response_serializer=demo__pb2.Review.SerializeToString,
             ),
     }
@@ -283,23 +267,6 @@ class ReviewService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/hipstershop.ReviewService/ListReviews',
             demo__pb2.ListReviewsRequest.SerializeToString,
-            demo__pb2.ListReviewsResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def GetReview(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/hipstershop.ReviewService/GetReview',
-            demo__pb2.GetReviewRequest.SerializeToString,
             demo__pb2.Review.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

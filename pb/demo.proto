@@ -14,8 +14,6 @@
 
 syntax = "proto3";
 
-option go_package = "google.golang.org/protobuf/types/known/";
-
 package hipstershop;
 
 // -----------------Cart service-----------------
@@ -69,12 +67,7 @@ message ListRecommendationsResponse {
 // ---------------Review service----------
 
 service ReviewService {
-  rpc ListReviews(ListReviewsRequest) returns (ListReviewsResponse){}
-  rpc GetReview(GetReviewRequest) returns (Review) {}
-}
-
-message GetReviewRequest {
-    string id = 1;
+  rpc ListReviews(ListReviewsRequest) returns (Review){}
 }
 
 message ListReviewsRequest {
@@ -91,7 +84,7 @@ message Review {
     string name = 2;
     string user = 3;
     string stars = 4;
-    string review = 5;
+    string text = 5;
 }
 
 // ---------------Product Catalog----------------

@@ -122,10 +122,13 @@ func (fe *frontendServer) getReviews(ctx context.Context, userID string, product
 	if err != nil {
 		return nil, err
 	}
-	out := make([]*pb.Review, len(resp.GetReviews()))
-	for i, v := range resp.GetReviews() {
-		out[i] = v
+
+	out := make([]*pb.Review, 4)
+	for i := 0; i < 4; i++ {
+		out[i] = &pb.Review{Id: resp.Id, Name: resp.Name, User: resp.Name, Stars: resp.Stars, Text: resp.Text}
+		_ = resp
 	}
+
 	return out, err
 }
 
