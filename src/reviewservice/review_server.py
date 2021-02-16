@@ -69,28 +69,36 @@ class ReviewService(demo_pb2_grpc.ReviewServiceServicer):
         # id of viewed product
         product_id = list(set(request.product_id))
 
+        # log product id
+        logger.info("[ListReviews product_id] product_id={}".format(product_id))
+
+        # prepare response
+        response = demo_pb2.ListReviewsResponse()
+
         # TODO: match id with all reviews in reviews.json return list of reviews
 
+        # build response (example 1)
+        rev = response.reviews.add()
 
-        # log product id
-        logger.info("[Recv ListReviews] product_ids={}".format(product_id))
-
-        # build response
-        rev = demo_pb2.Review()
         rev.id = "OLJCESPC7Z"
-        rev.name = "Vintage Typewriter"
+        rev.name = "Highly recommended!"
         rev.user = "Max"
         rev.stars = "4"
-        rev.text = "This typewriter looks good in your living room."
+        rev.text = "This product is the best."
 
-        # review_list = ["OLJCESPC7Z", "Vintage Typewriter", "Max", "4", "This typewriter looks good in your living room."]
-        # response = demo_pb2.ListReviewsResponse()
-        # response.extends(rev)
+        rev1 = response.reviews.add()
+
+        # build response (example 2)
+        rev1.id = "OLJCESPC7Z"
+        rev1.name = "I can't stop using it..."
+        rev1.user = "Alice"
+        rev1.stars = "4"
+        rev1.text = "It's just what you need."
 
         # log review response
-        #logger.info("[Review review] response={}".format(response))
+        logger.info("[ListReviews response] response={}".format(response))
 
-        return rev
+        return response
 
 
     def Check(self, request, context):

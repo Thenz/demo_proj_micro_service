@@ -117,16 +117,16 @@ func (fe *frontendServer) getRecommendations(ctx context.Context, userID string,
 }
 
 func (fe *frontendServer) getReviews(ctx context.Context, userID string, productID []string) ([]*pb.Review, error) {
+// get a list of reviews from currently viewed product id
 	resp, err := pb.NewReviewServiceClient(fe.reviewSvcConn).ListReviews(ctx,
 		&pb.ListReviewsRequest{UserId: userID, ProductId: productID})
 	if err != nil {
 		return nil, err
 	}
-
-	out := make([]*pb.Review, 4)
-	for i := 0; i < 4; i++ {
-		out[i] = &pb.Review{Id: resp.Id, Name: resp.Name, User: resp.Name, Stars: resp.Stars, Text: resp.Text}
-		_ = resp
+// return a list of reviews in correct data format
+	out := make([]*pb.Review, len(resp.Reviews))
+	for i, v := range resp.Reviews {
+		out[i] = v
 	}
 
 	return out, err
