@@ -627,3 +627,19 @@ select {
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
 }
+
+/* style reviews section */
+.reviews h2 {
+  border-bottom: 5px solid #b4b2bb;
+  text-align: center;
+  padding-bottom: 3rem;
+}
+
+.review {
+  padding: 20px 16.96428571%;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+}
+.review-author {
+  padding-left: 30px;
+}
