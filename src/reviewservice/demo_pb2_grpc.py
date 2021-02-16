@@ -219,7 +219,7 @@ class ReviewServiceStub(object):
         self.ListReviews = channel.unary_unary(
                 '/hipstershop.ReviewService/ListReviews',
                 request_serializer=demo__pb2.ListReviewsRequest.SerializeToString,
-                response_deserializer=demo__pb2.Review.FromString,
+                response_deserializer=demo__pb2.ListReviewsResponse.FromString,
                 )
 
 
@@ -240,7 +240,7 @@ def add_ReviewServiceServicer_to_server(servicer, server):
             'ListReviews': grpc.unary_unary_rpc_method_handler(
                     servicer.ListReviews,
                     request_deserializer=demo__pb2.ListReviewsRequest.FromString,
-                    response_serializer=demo__pb2.Review.SerializeToString,
+                    response_serializer=demo__pb2.ListReviewsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -267,7 +267,7 @@ class ReviewService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/hipstershop.ReviewService/ListReviews',
             demo__pb2.ListReviewsRequest.SerializeToString,
-            demo__pb2.Review.FromString,
+            demo__pb2.ListReviewsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

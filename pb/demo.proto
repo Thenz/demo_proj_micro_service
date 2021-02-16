@@ -67,7 +67,7 @@ message ListRecommendationsResponse {
 // ---------------Review service----------
 
 service ReviewService {
-  rpc ListReviews(ListReviewsRequest) returns (Review){}
+  rpc ListReviews(ListReviewsRequest) returns (ListReviewsResponse){}
 }
 
 message ListReviewsRequest {
