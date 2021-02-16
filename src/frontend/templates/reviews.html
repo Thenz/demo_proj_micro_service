@@ -17,20 +17,17 @@
 {{ define "reviews" }}
 <section class="reviews newsection">
     <div class="container">
-      <h2>Reviews</h2>
-      <div class="row prods">
-          {{range . }}
-          <div class="col-md-3">
-            <div class="h-card card mb-3 box-shadow">
-              <div class="card-body text-center py-2">
-                <h5 class="card-title h-card-title">
-                  {{ .Name }}
-                </h5>
-              </div>
-            </div>
-          </div>
-          {{ end }}
-        </div>
+      <h2>Here's what people are saying:</h2>
+      {{range . }}
+      <div class="review">
+        <h3 class="review-title">
+          {{ .Name }}
+        </h3>
+        <h5 class="review-author text-muted">- {{ .User }}</h5>
+        <h5 class="review-rating">{{ .Stars }}/5 Stars</h5>
+        <p class="review-text">{{ .Text }}</p>
+      </div>
+      {{ end }}
     </div>
 </section>
 {{ end }}
