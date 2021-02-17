@@ -64,6 +64,12 @@
   <div class="container py-3 px-lg-5 py-lg-5">
     {{ if $.reviews}}
       {{ template "reviews" $.reviews }}
+    {{ else }}
+      <section class="reviews newsection">
+          <div class="container">
+            <h2>Have a great day!</h2>
+          </div>
+      </section>
     {{ end }}
 
     {{ if $.recommendations}}
