@@ -1,20 +1,27 @@
-We decided to implement a review micro service that presents information about
-the presented product directly under the product itself.
+## Installation Guide
 
-We have decided on Python as our backend language. Our first goal is to duplicate
-an existing microservice in order to stay consistent with the microservice
-structure. We choose the recommendation service as it was written in Python and
-located conveniently below the product on the store-page where we imagine our
-recommendation service to be.
+The collection of microservices is run inside a local Kubernetes cluster.
 
-Our first intermediate goal is to implement a perfect copy of the recommendation
-service that will serve as a template out of which we can sculpt our review
-service. Explicitly we want to
+1. To launch **Minikube**. Please ensure that the local Kubernetes cluster has at least:
 
-* have a separate source folder reviewservice that is successfully being built
-and integrated into the rest of the application
-* have that reviewservice communicate with the html via its own RPCs
+  * 4 CPUs
+  * 4 GiB of memory
+  * 32 GB of disk space
 
-Fulfilling our that first goal was easy enough as we got to copy the
-recommendaitonservice folder, rename it to be reviewservice and replace each
-reference to recommendationservice with reviewservice. 
+    `minikube start --cpus=4 --memory 4096 --disk-size 32g`
+
+2. Run `kubectl get nodes` to verify you're connected to the respective control plane.
+
+3. Run `skaffold run` (first time will be slow, it can take ~20 minutes)
+
+4. Run `kubectl get pods` to verify the Pods are ready and running
+
+5. Access the web frontend through your browser
+
+  * **Minikube** requires you to run a command to access the frontend service:
+
+    `minikube service frontend-external`
+
+## Cleanup
+
+If you've deployed the application with `skaffold run` command, you can run skaffold deleteto clean up deployed resources.
