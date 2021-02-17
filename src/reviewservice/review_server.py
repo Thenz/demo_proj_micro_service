@@ -17,6 +17,7 @@
 import os
 import random
 import time
+import json
 import traceback
 from concurrent import futures
 
@@ -67,7 +68,7 @@ class ReviewService(demo_pb2_grpc.ReviewServiceServicer):
     def ListReviews(self, request, context):
 
         # id of viewed product
-        product_id = list(set(request.product_id))
+        product_id = str(request.product_id[0])
 
         # log product id
         logger.info("[ListReviews product_id] product_id={}".format(product_id))
@@ -75,25 +76,24 @@ class ReviewService(demo_pb2_grpc.ReviewServiceServicer):
         # prepare response
         response = demo_pb2.ListReviewsResponse()
 
-        # TODO: match id with all reviews in reviews.json return list of reviews
+        # read reviews.json file
+        if "reviews.json" in os.listdir():
+            with open("reviews.json", "r") as f:
+                reviews = json.loads(f.read())
 
-        # build response (example 1)
-        rev = response.reviews.add()
+            for product in reviews["products"]:
 
-        rev.id = "OLJCESPC7Z"
-        rev.name = "Highly recommended!"
-        rev.user = "Max"
-        rev.stars = "4"
-        rev.text = "This product is the best."
+                if (product["id"] == product_id):
+                    # build response
+                    rev = response.reviews.add()
+                    rev.id    = product["id"]
+                    rev.name  = product["name"]
+                    rev.user  = product["user"]
+                    rev.stars = product["stars"]
+                    rev.text  = product["review"]
 
-        rev1 = response.reviews.add()
-
-        # build response (example 2)
-        rev1.id = "OLJCESPC7Z"
-        rev1.name = "I can't stop using it..."
-        rev1.user = "Alice"
-        rev1.stars = "4"
-        rev1.text = "It's just what you need."
+                    # log product ids
+                    logger.info("[product] product={}".format(product))
 
         # log review response
         logger.info("[ListReviews response] response={}".format(response))
@@ -155,12 +155,6 @@ if __name__ == "__main__":
         logger.info("Debugger disabled.")
 
     port = os.environ.get('PORT', "8080")
-    catalog_addr = os.environ.get('PRODUCT_CATALOG_SERVICE_ADDR', '')
-    if catalog_addr == "":
-        raise Exception('PRODUCT_CATALOG_SERVICE_ADDR environment variable not set')
-    logger.info("product catalog address: " + catalog_addr)
-    channel = grpc.insecure_channel(catalog_addr)
-    product_catalog_stub = demo_pb2_grpc.ProductCatalogServiceStub(channel)
 
     # create gRPC server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10),
