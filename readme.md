@@ -22,6 +22,19 @@ The collection of microservices is run inside a local Kubernetes cluster.
 
     `minikube service frontend-external`
 
+## Adding reviews
+
+To add an review to be displayed on the store page, open `reviews.json` located in inside 
+`src/reviewservice`. Fill the fields
+
+  * id
+  * name
+  * user
+  * stars
+  * review
+
+with the desired content, and reload the page.
+
 ## Cleanup
 
 If you've deployed the application with `skaffold run` command, you can run skaffold deleteto clean up deployed resources.
