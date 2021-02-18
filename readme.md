@@ -4,11 +4,11 @@ The collection of microservices is run inside a local Kubernetes cluster.
 
 1. To launch **Minikube**. Please ensure that the local Kubernetes cluster has at least:
 
-  * 4 CPUs
-  * 4 GiB of memory
-  * 32 GB of disk space
+      * 4 CPUs
+      * 4 GiB of memory
+      * 32 GB of disk space  
 
-    `minikube start --cpus=4 --memory 4096 --disk-size 32g`
+  by running `minikube start --cpus=4 --memory 4096 --disk-size 32g`
 
 2. Run `kubectl get nodes` to verify you're connected to the respective control plane.
 
