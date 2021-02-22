@@ -22,6 +22,13 @@
             "review": "You won't have a camera to use it and it probably doesn't work anyway."
         },
         {
+            "id": "66VCHSJNUP",
+            "name": "Vintage Camera Lens",
+            "user": "Karen Frougher",
+            "stars": "1",
+            "review": "No matter what I try I can't seem to connect it to my computer. All the pictures I took are still on the device! I really wish they would have made this clear inside the manual. I'd like to speak to the manager, please."
+        },
+        {
             "id": "1YMWWN1N4O",
             "name": "Home Barista Kit",
             "user": "Max",
@@ -29,11 +36,53 @@
             "review": "Always wanted to brew coffee with Chemex and Aeropress at home?"
         },
         {
+            "id": "1YMWWN1N4O",
+            "name": "Home Barista Kit",
+            "user": "Ferdinand Fahrlich",
+            "stars": "5",
+            "review": "Keeps its promises. I got my Home Barista Kit last week ago and began the procedure immediately. After painfully preparing a cup of coffee every other hour, I can confirm it finally worked! I grew a luscious, glorious beard and tattoos on my arms. Drinking all that shitty coffee turned out to be worth it."
+        },
+        {
+            "id": "1YMWWN1N4O",
+            "name": "Home Barista Kit",
+            "user": "Klaus Peter von Schönuntenrum",
+            "stars": "4",
+            "review": "I never liked coffee, its what I imagine devils spit tastes like. But damn does this thing look good in my kitchen, I tell you that."
+        },
+        {
             "id": "L9ECAV7KIM",
             "name": "Terrarium",
             "user": "Max",
             "stars": "4",
             "review": "This terrarium will looks great in your white painted living room."
+        },
+        {
+            "id": "L9ECAV7KIM",
+            "name": "Terrarium",
+            "user": "Hope Hasselhoff",
+            "stars": "4",
+            "review": "Fun terrarium. It's spacious, empty and comes in a rectangle form as advertised. Me and my Husband couldn't be happier! It fits him just enough to be comfortable and I finally get the bed back to myself..."
+        },
+        {
+            "id": "L9ECAV7KIM",
+            "name": "Terrarium",
+            "user": "Reinhartd Rocksoft",
+            "stars": "5",
+            "review": "They moved in a few days ago and have not left ever since! I miss them"
+        },
+        {
+            "id": "2ZYFJ3GM2N",
+            "name": "Film Camera",
+            "user": "George Lucas",
+            "stars": "3",
+            "review": "Really an amazing image this little fella throws on the wall but not including a charging cable is just a little bit of bad taste in my honest opinion. Stars lost."
+        },
+        {
+            "id": "2ZYFJ3GM2N",
+            "name": "Film Camera",
+            "user": "Mrs. Shyalanan",
+            "stars": "5",
+            "review": "This technology bears huge potential. I used it on my grandson. Now I have two grandsons!"
         },
         {
             "id": "2ZYFJ3GM2N",
@@ -50,11 +99,39 @@
             "review": "It still works."
         },
         {
+            "id": "0PUK6V6EV0",
+            "name": "Vintage Record Player",
+            "user": "Skizzy D.",
+            "stars": "4",
+            "review": "Yo this shit whack, no spotify support"
+        },
+        {
+            "id": "0PUK6V6EV0",
+            "name": "Vintage Record Player",
+            "user": "Derick Durstig",
+            "stars": "5",
+            "review": "Very impressive. Above-average sound quality for a piece of such age. Makes itself wonderfully on top of my chimney. "
+        },
+        {
             "id": "LS4PSXUNUM",
             "name": "Metal Camping Mug",
             "user": "Max",
             "stars": "4",
             "review": "You probably don't go camping that often but this is better than plastic cups."
+        },
+        {
+            "id": "LS4PSXUNUM",
+            "name": "Metal Camping Mug",
+            "user": "Robert Müller",
+            "stars": "4",
+            "review": "Great mug, multipurpose ready. Can also be used while in a car, not camping exclusive. Carries a large variety of liquids, but does not leak. Impressive!"
+        },
+        {
+            "id": "LS4PSXUNUM",
+            "name": "Metal Camping Mug",
+            "user": "Rex Phillerson",
+            "stars": "5",
+            "review": "My wife left me. My kids hate me. Everything and everyone was gone. But this mug. It has been at my side for the past years, during my darkest moments. It travelled with me over mountains and rivers, never leaving my side. I would buy it again. Maybe marry again."
         },
         {
             "id": "9SIQT8TOJO",
@@ -64,11 +141,39 @@
             "review": "This single gear bike probably cannot climb the hills of San Francisco."
         },
         {
+            "id": "9SIQT8TOJO",
+            "name": "City Bike",
+            "user": "Alina Apfhel",
+            "stars": "4",
+            "review": "It gets me from A to B while looking unspectacular enough for nobody to bother even trying to steal it. Its shittiness is its camouflage."
+        },
+        {
+            "id": "9SIQT8TOJO",
+            "name": "City Bike",
+            "user": "Kim Kurani",
+            "stars": "1",
+            "review": "Broke down soon after I left the path, can't even take a proper dirt road. Very disappointing. "
+        },
+        {
             "id": "6E92ZMYYFZ",
             "name": "Air Plant",
             "user": "Max",
             "stars": "4",
             "review": "Have you ever wondered whether air plants need water? Buy one and figure out."
+        },
+        {
+            "id": "6E92ZMYYFZ",
+            "name": "Air Plant",
+            "user": "Beatrix Botanix",
+            "stars": "4",
+            "review": "This air-plant may look innocent enough on the pictures, but you better know what you're in for before purchasing one of these little badboys. If you miss your trimming window they WILL grow and take over your entire house. They start at one room laying their roots all over the place before expanding out in all directions. Fun plant, but using these puppy pictures to advertise this beast does not do it justice."
+        },
+        {
+            "id": "6E92ZMYYFZ",
+            "name": "Air Plant",
+            "user": "Waldemar Frey",
+            "stars": "4",
+            "review": "Quite a nice plant unfortunately not potty trained."
         }
     ]
 }
