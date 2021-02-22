@@ -1,3 +1,7 @@
+## Review microservice
+
+This repository adds a review microservice to the [Google Microservice Demo](https://github.com/GoogleCloudPlatform/microservices-demo). The review microservice presents relevant user reviews on each product's page. It receives the product id from the viewed product and matches it with the product id in a list of product reviews for all products. All reviews for a viewed product are displayed below the product information. Reviews can be added in the `reviews.json` file located in inside `src/reviewservice`.
+
 ## Installation Guide
 
 The collection of microservices is run inside a local Kubernetes cluster.
@@ -6,9 +10,8 @@ The collection of microservices is run inside a local Kubernetes cluster.
 
       * 4 CPUs
       * 4 GiB of memory
-      * 32 GB of disk space  
 
-  by running `minikube start --cpus=4 --memory 4096 --disk-size 32g`
+  by running `minikube start --cpus=4 --memory 4096`
 
 2. Run `kubectl get nodes` to verify you're connected to the respective control plane.
 
@@ -24,7 +27,7 @@ The collection of microservices is run inside a local Kubernetes cluster.
 
 ## Adding reviews
 
-To add an review to be displayed on the store page, open `reviews.json` located in inside 
+To add an review to be displayed on the store page, open `reviews.json` located in inside
 `src/reviewservice`. Fill the fields
 
   * id
